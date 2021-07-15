@@ -1,0 +1,81 @@
+<?php
+session_start();
+//all
+//admin
+//sqlcom = select * from inprogress where error = true 
+//user
+//sqlcom = select * from inprogress where error = true and falcuty = $['']
+//open db exac
+//echo '{res:$error_data,success:data}'; //alert
+if(!isset($_SESSION["USER"])) die();
+
+$sqlcom = "";
+$FALCUTY;
+$ID = $_GET['ID'];
+
+$MANAGE = $_GET['MANAGE']; //updat delete
+
+if($FALCUTY == "ALL"){  //admin -> host/clear_pgs.php?FALCUTY=""&MANAGE=""&ID=""
+	$FALCUTY = $_GET["FALCUTY"];
+	$sqlcom = "SELECT * FROM inprogress WHERE ID == ? ";
+}else{ //admin -> host/clear_pgs.php?MANAGE=""&ID=""
+	$FALCUTY = $_SESSION["FALCUTY"];
+	$sqlcom = "SELECT * FROM inprogress WHERE ID == ? AND FALCUTY = '".$FALCUTY."'";
+}
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+
+try {
+	
+    $con = new PDO("mysql:host=$servername;dbname=project", $username, $password);
+    // set the PDO error mode to exception
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	
+    $name;
+	$detail;
+	$crf;
+	
+	if($MANAGE == "updat"){
+		//$sqlcom = "SELECT * FROM ".$_SESSION["FALCUTY"];
+		$result = $con->prepare($sqlcom);
+		$result->execute([$ID]);
+		
+		if($result->rowCount() > 0){
+			//$json = '{"REPORT":';
+			while($rs = $result->fetch()){
+				//จับ data
+				$name = rs['NAME'];
+				$detail = rs['DETAIL'];
+				$crf = rs['CRF'];
+			}
+			
+		}
+			
+		//insert db
+		$result = $con->prepare("UPDATE `".$FALCUTY."` SET `NAME`= ?,`ID`= ?,`DETAIL`= ? WHERE `CRF` = ?");
+		$result->execute([$anme,$ID,$detail,$crf]); //if(1)
+		//delete DELETE FROM table_name WHERE condition; 
+		$result = $con->prepare("DELETE FROM inprogress WHERE `ID` = ?");
+		$result->execute([$ID]); //if(1)
+		echo '{"success":"yes"}';
+		
+	}else if($MANAGE == "clear"){ //wrong or item not found
+		//delete
+		$result = $con->prepare("DELETE FROM inprogress WHERE `ID` = ?");
+		$result->execute([$ID]); //if(1)
+		echo '{"success":"yes"}';
+	}
+
+
+
+	
+	
+}catch(PDOException $e)
+    {
+    echo "Connection failed: " . $e->getMessage();
+    }
+
+?>

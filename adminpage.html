@@ -1,0 +1,105 @@
+<?php
+//if(!addmin)
+	header('home.html');
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="UTF-8">
+	<title>admin</title>
+	<link rel='stylesheet' type='text/css' href='style.css' >
+	<script type="text/javascript" src='ajax.js'></script>
+	<script type="text/javascript" src='sniper.js'></script> 
+	<script type="text/javascript" src='admin.js'></script>  
+	
+	<script type="text/javascript" src='canvasJS.js'></script> 
+	<script type="text/javascript" src='qjson.js'></script> 
+	<link rel='stylesheet' type='text/css' href='control.css' >
+
+</head>
+
+<body>
+
+		
+		<div id='mySidenav' class='sidenav'>
+			<t onclick='closeNav()'> &times;	</t> <br>
+			<t onclick='closeNav()'>log out		</t> <br>
+			<t onclick='add_user()'>add user 	</t> <br>
+			<t onclick='delete_user()'>delete user	</t> <br>
+			<t onclick='show_edite()'>edite file</t> <br>
+		</div>
+
+		<button id='btnoption' onclick='openNav()'>option</button>
+		
+		<textarea id ='txt_area' style="font-family: Arial;font-size: 12pt;width:90%;height:100vw"> </textarea>
+		
+	    <div id='sneaker'>
+			Path file "/file_name.txt"
+			<input type='text' id ='txt'>
+			<input type='button' onclick='load_file()' value="load">
+			<input type='button' onclick='update_file()' value="update">
+			<input type='button' onclick=' hide_edite()' value="back">
+	    </div>
+		
+
+		
+	    		
+		<div id='boxout' >
+    		 <center>
+    		  <b>DETAIL:</b>
+    		  <div id = 'detail'> adj fonsiz color type </div>
+    		  <hr>
+    		   <b>CHANGE:</b>
+    		        <select id="ob_change">
+                      <option  value="volvocar">Volvo</option>
+                      <option value="saabcar">Saab</option>
+                    </select>
+                    <input type = 'button' value='change' id='btn_change'>
+    		  <hr>
+    		  <b>OUT:</b>
+    		      <select id="op_sent">
+                      <option  value="volvocar">Volvo</option>
+                      <option value="saabcar">Saab</option>
+                  </select>
+              <input type = 'button' value='werewr' id='btn_out'>
+              <hr>
+              <input type = 'button' value='close' onclick='hide()'>
+            </center>
+		</div>
+		
+		<div id='boxin' >
+		   
+
+		        NAME: <input type='text' id='NAME'>
+		        <br>
+		        ID: <input type='text' id = 'ID'> 
+		        <br>
+		        DETAIL: <input type='text' id = 'DETAIL' >
+		        <br>
+    		    <select id="op_additem">
+                  <option  value="volvocar">Volvo</option>
+                  <option value="saabcar">Saab</option>
+                </select>
+                
+                <input type = 'button' value='addItem' id='btn_additem'>
+                <hr>
+                i love css fu***
+                <input type = 'button' value='close' onclick='hide()' >
+
+           
+		</div>
+
+
+		
+		<canvas id='can'> </canvas>
+		
+
+		
+		
+
+	
+	
+</body>

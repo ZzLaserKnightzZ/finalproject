@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>login</title>
+	<script  src='logincapchar.js'> </script>
+	<script  src='sniper.js'> </script>
+	<style>
+		body{
+			margin:0;
+			background-color:rgba(0,0,150,0.6);
+			
+		}
+		.login{
+			margin:15% 30% 0 30%;
+			background-color:gray;
+			resize: vertical;
+			overflow: auto;
+		}
+		.login p:first-child{
+			color:lime;
+		}
+
+		h3{
+			color:lime;
+		}
+	</style>
+</head>
+
+<body>
+<center><h2>hello word</h2></center>
+<form action="/handleUSER" method='POST'>
+<div class='login'>
+	<center>
+
+	<p> 	 <h3>LOGIN</h3>
+	<p> 	
+	<p>		USERNAME:  <input type='text' name='USERNAME'> 
+	<p>     PASSWORD:  <input type='password' name='PASSWORD'> 
+	<p>		<canvas id='capchar' > </canvas>
+	<p>		<input type='text' id='verify' onchange='change()'> &nbsp&nbsp&nbsp <input type='button' value='refrash' onclick='draw()'> 
+	<p>     <input type='submit' value='login' id='login' onclick='clear()'> 
+
+	</center>
+</div>	
+</form>
+
+	
+	
+</body>
+
+</html>
